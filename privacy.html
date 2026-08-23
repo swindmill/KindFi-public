@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — KindFi</title>
+  <meta name="description" content="KindFi's privacy policy. KindFi collects no personal data: it talks directly to your own UniFi controller on your local network, with no cloud account, relay, or analytics." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="kindfi-page">
+  <header class="doc-header">
+    <a class="doc-back" href="./">&larr; KindFi</a>
+  </header>
+
+  <main class="prose">
+    <h1>KindFi Privacy Policy</h1>
+    <p>Last updated: August 4, 2026</p>
+    <p>KindFi is a local-network utility app for managing existing UniFi firewall rules. This policy covers the KindFi iOS app.</p>
+    <h2>Data Collection</h2>
+    <p>KindFi does not collect, sell, or share personal data with the developer.</p>
+    <p>The app does not use:</p>
+    <ul>
+    <li>Analytics SDKs</li>
+    <li>Advertising SDKs</li>
+    <li>Third-party tracking</li>
+    </ul>
+    <p>The only frameworks KindFi links against are first-party Apple frameworks (SwiftUI, SwiftData, MultipeerConnectivity, VisionKit, UserNotifications, and similar) - there is no third-party code with its own data practices.</p>
+    <h2>Credentials and Local Data</h2>
+    <p>To connect to your UniFi Controller, the app uses credentials you enter.</p>
+    <ul>
+    <li>Credentials and session tokens are stored locally on your device using iOS secure storage (Keychain).</li>
+    <li>Selected rule configuration is stored locally on your device.</li>
+    <li>This data is used only to operate the app's core functionality, and is never transmitted anywhere other than directly to your own UniFi Controller.</li>
+    </ul>
+    <h2>Network Communication</h2>
+    <p>KindFi communicates directly with your UniFi Controller on your local network.</p>
+    <ul>
+    <li>No cloud relay service is used by KindFi.</li>
+    <li>The developer does not receive your controller data or credentials.</li>
+    </ul>
+    <h2>Camera and Bluetooth (Device Setup)</h2>
+    <p>KindFi can optionally use your device's camera and Bluetooth/local-network radios to set up a second device without re-typing your UniFi admin password ("Scan to Set Up"):</p>
+    <ul>
+    <li>The camera is used only to scan a QR code displayed on your other, already-configured device. No photo or video is stored or transmitted.</li>
+    <li>Bluetooth and local peer-to-peer networking (via Apple's Multipeer Connectivity framework) are used only to transfer your UniFi credentials directly between your own two devices, over a short-lived, single-use, encrypted connection. This never leaves your local vicinity and never reaches any server.</li>
+    </ul>
+    <h2>Notifications</h2>
+    <p>KindFi can schedule local notifications (e.g. to tell you when a temporary access override has expired). These are generated and delivered entirely on-device - they are not push notifications sent from a server.</p>
+    <h2>Children</h2>
+    <p>KindFi is intended for parents/guardians and is not directed to children.</p>
+    <h2>Changes</h2>
+    <p>This policy may be updated in future versions. Material changes will be reflected by updating the date above.</p>
+    <h2>Contact</h2>
+    <p>For support or privacy questions, open an issue at:</p>
+    <p><a href="https://github.com/swindmill/KindFi-public/issues">https://github.com/swindmill/KindFi-public/issues</a></p>
+  </main>
+
+  <footer>
+    <p>KindFi includes open-source software. Full license attribution is available in the app under Settings &gt; Open Source Licenses.</p>
+    <p>UniFi and UniFi Network Application are trademarks of Ubiquiti Inc. KindFi is not affiliated with Ubiquiti Inc.</p>
+  </footer>
+</div>
+</body>
+</html>

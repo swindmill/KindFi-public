@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KindFi — Local UniFi parental control</title>
+  <meta name="description" content="KindFi is an iOS app for parents to manage parental-control firewall policies on a locally deployed UniFi network, entirely on-device with no cloud dependency." />
+  <!-- Favicon is a tighter crop of the app icon: the disc fills the frame with
+       transparent corners, rather than floating in the dark padding icon.png
+       carries. At 16px that padding wasted most of the pixel budget and the
+       mark read as an indistinct blob.
+
+       SVG first - browsers that support it get one file that is crisp at every
+       size. The .ico stays as the fallback for those that don't, and because a
+       root /favicon.ico is still requested automatically regardless of markup.
+       Only one raster candidate is declared, so there is no size tie for
+       browsers to resolve inconsistently. -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <!-- apple-touch-icon deliberately keeps icon.png: iOS renders transparency as
+       black and applies its own rounding, so it wants the opaque, padded square. -->
+  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="kindfi-page">
+  <header class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Local UniFi parental control</p>
+      <h1 class="wordmark">KindFi</h1>
+      <!-- Deliberately mirrors the mark the app draws under "kind": one
+           asymmetric quadratic, control point at 75% across so the apex falls
+           right of centre. Keep the two in step. -->
+      <p class="tagline">Control network access with a tap. Clear is <span class="kind">kind<svg class="flourish" viewBox="0 0 34 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M1.7 7.8 Q25.5 0.6 32.3 7.8" /></svg></span>.</p>
+      <p class="lede">KindFi manages your UniFi network's firewall rules by family member, right from your iPhone — no cloud account, no new backend, nothing leaves your house.</p>
+      <nav class="hero-links">
+        <a href="#features">What it does</a>
+        <a href="#support">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+    <div class="hero-rings" aria-hidden="true">
+      <div class="ring-stack">
+        <span class="ring ring-3"></span>
+        <span class="ring ring-2"></span>
+        <span class="ring ring-1"></span>
+        <span class="core"><img class="app-icon" src="icon.png" alt="KindFi app icon" width="132" height="132" /></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="features">
+      <h2>What it does</h2>
+      <div class="rule-list">
+        <div class="rule-row">
+          <div class="rule-text">
+            <span class="rule-name">Names first</span>
+            <span class="rule-desc">Tap a name to see just their rules. A badge shows at a glance who has no internet access right now.</span>
+          </div>
+          <span class="pill pill-blue">DASHBOARD</span>
+        </div>
+        <div class="rule-row">
+          <div class="rule-text">
+            <span class="rule-name">Exceptions</span>
+            <span class="rule-desc">Approve one specific app or site while a broader block stays active — Pinterest through, the rest of social media blocked.</span>
+          </div>
+          <span class="pill pill-kind">ALLOWED</span>
+        </div>
+        <div class="rule-row">
+          <div class="rule-text">
+            <span class="rule-name">Temporary overrides</span>
+            <span class="rule-desc">"Ten more minutes" without touching the schedule. Auto-reverts, no need to remember to undo it.</span>
+          </div>
+          <span class="pill pill-neutral">15–120 MIN</span>
+        </div>
+        <div class="rule-row">
+          <div class="rule-text">
+            <span class="rule-name">Scan to set up</span>
+            <span class="rule-desc">Add a second family device by scanning a QR code from one that's already configured — no retyping the admin password.</span>
+          </div>
+          <span class="pill pill-blue">NO PASSWORD</span>
+        </div>
+        <div class="rule-row">
+          <div class="rule-text">
+            <span class="rule-name">Local only</span>
+            <span class="rule-desc">KindFi talks directly to your UniFi controller. No account, no relay, no analytics.</span>
+          </div>
+          <span class="pill pill-kind">NO CLOUD</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <h2>Why it exists</h2>
+      <p>Most parental-control tools ask you to hand a stranger's cloud service your family's traffic. UniFi's firewall already does everything a tool like that promises — it's just buried three menus deep, in an interface built for network admins, not for "can I have ten more minutes."</p>
+      <p><strong>KindFi doesn't add a new system.</strong> It just puts the rules you already wrote somewhere you'll actually reach for them — grouped by person, one tap to toggle, nothing sent anywhere but your own router.</p>
+    </section>
+
+    <section class="requirements">
+      <h2>What you'll need</h2>
+      <ul>
+        <li>iOS 17.0 or later</li>
+        <li>A UniFi Dream Machine or Cloud Gateway with <code>UniFi Network 8.x+</code> and zone-based firewall policies enabled</li>
+        <li>A local UniFi admin account — not a Ubiquiti cloud login</li>
+        <li>Firewall rules already set up in the UniFi console (KindFi toggles them; it doesn't create them)</li>
+      </ul>
+    </section>
+
+    <section id="support" class="utility">
+      <div class="utility-col">
+        <h3>Support</h3>
+        <p>Questions, bugs, or feature requests — <a href="https://github.com/swindmill/KindFi-public/issues">open an issue</a> on this repository.</p>
+      </div>
+      <div class="utility-col">
+        <h3>Privacy</h3>
+        <p>KindFi collects nothing, ever. Full policy in <a href="privacy.html">the privacy policy</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>KindFi includes open-source software. Full license attribution is available in the app under Settings &gt; Open Source Licenses.</p>
+    <p>UniFi and UniFi Network Application are trademarks of Ubiquiti Inc. KindFi is not affiliated with Ubiquiti Inc.</p>
+  </footer>
+</div>
+</body>
+</html>
