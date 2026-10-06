@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 30 140 140" role="img" aria-label="KindFi">
+  <defs>
+    <radialGradient id="gradOrbBlue" cx="42%" cy="36%" r="65%">
+      <stop offset="0%" stop-color="#5b8cff"/>
+      <stop offset="60%" stop-color="#2f66e8"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </radialGradient>
+    <symbol id="wm-fill-v" viewBox="-70 -70 140 140">
+      <g transform="rotate(-12)" fill="currentColor">
+        <path d="M0,0 C-17,-9 -17,-45 0,-58 C17,-45 17,-9 0,0 Z"/>
+        <path d="M0,0 C-17,-9 -17,-45 0,-58 C17,-45 17,-9 0,0 Z" transform="rotate(90)"/>
+        <path d="M0,0 C-17,-9 -17,-45 0,-58 C17,-45 17,-9 0,0 Z" transform="rotate(180)"/>
+        <path d="M0,0 C-17,-9 -17,-45 0,-58 C17,-45 17,-9 0,0 Z" transform="rotate(270)"/>
+        <circle r="11"/>
+      </g>
+    </symbol>
+  </defs>
+  <circle cx="100" cy="100" r="70" fill="url(#gradOrbBlue)"/>
+  <use href="#wm-fill-v" x="40" y="40" width="120" height="120" style="color:#0b1326"/>
+</svg>

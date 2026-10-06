@@ -1,0 +1,542 @@
+:root {
+    --ground: #0b1326;
+    --surface: #131b2e;
+    --surface-raised: #1a2338;
+    --primary: #2563eb;
+    --primary-soft: #b4c5ff;
+    --kind: #10b981;
+    --warning: #f59e0b;
+    --text: #f3f5fb;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --border: rgba(148, 163, 184, 0.16);
+    --ring-stroke: rgba(148, 163, 184, 0.35);
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ground: #eef1f9;
+      --surface: #ffffff;
+      --surface-raised: #f6f8fd;
+      --primary: #2454d6;
+      --primary-soft: #dbe4ff;
+      --kind: #05885f;
+      --warning: #b6690a;
+      --text: #0b1326;
+      --text-secondary: #475569;
+      --text-tertiary: #64748b;
+      --border: rgba(11, 19, 38, 0.12);
+      --ring-stroke: rgba(11, 19, 38, 0.16);
+      color-scheme: light;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0b1326;
+    --surface: #131b2e;
+    --surface-raised: #1a2338;
+    --primary: #2563eb;
+    --primary-soft: #b4c5ff;
+    --kind: #10b981;
+    --warning: #f59e0b;
+    --text: #f3f5fb;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --border: rgba(148, 163, 184, 0.16);
+    --ring-stroke: rgba(148, 163, 184, 0.35);
+    color-scheme: dark;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #eef1f9;
+    --surface: #ffffff;
+    --surface-raised: #f6f8fd;
+    --primary: #2454d6;
+    --primary-soft: #dbe4ff;
+    --kind: #05885f;
+    --warning: #b6690a;
+    --text: #0b1326;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    --border: rgba(11, 19, 38, 0.12);
+    --ring-stroke: rgba(11, 19, 38, 0.16);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  .kindfi-page {
+    background: var(--ground);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .kindfi-page a {
+    color: var(--primary-soft);
+    text-decoration-color: color-mix(in srgb, var(--primary-soft) 45%, transparent);
+    text-underline-offset: 3px;
+  }
+  /* Two separate rules, not a selector list ending in a comma before an
+     @media - that is invalid CSS, so the parser dropped the whole block and
+     light-mode links silently kept the dark-mode --primary-soft. On the light
+     ground that is 1.12:1 against the background, essentially invisible;
+     --primary gives 5.61:1. Matches the .pill-blue pattern further down. */
+  :root[data-theme="light"] .kindfi-page a {
+    color: var(--primary);
+    text-decoration-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  }
+  @media (prefers-color-scheme: light) {
+    .kindfi-page a {
+      color: var(--primary);
+      text-decoration-color: color-mix(in srgb, var(--primary) 45%, transparent);
+    }
+  }
+  .kindfi-page a:hover { text-decoration-color: currentColor; }
+  .kindfi-page a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 560px) 1fr;
+    align-items: center;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 96px 32px 88px;
+    min-height: 560px;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin: 0 0 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--kind);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--kind) 20%, transparent);
+  }
+
+  .wordmark {
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+    background: linear-gradient(180deg, var(--text), color-mix(in srgb, var(--text) 72%, var(--text-secondary)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: clamp(19px, 2.4vw, 23px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  /* Weight and the green mark carry the emphasis - not brightness. The app
+     draws "Clear is" and "kind" in the same colour and distinguishes them
+     purely by weight plus the flourish; this used to brighten the whole
+     phrase to --text, which read as a third emphasis level the app doesn't
+     have. */
+  .tagline .kind {
+    font-weight: 700;
+    position: relative;
+    white-space: nowrap;
+  }
+  /* Proportions taken from the app, expressed relative to the type so they
+     survive the tagline's clamped font size. There the flourish is a fixed
+     34x12pt frame with a 6pt stroke, sitting 8pt below the text, under 20pt
+     type - i.e. 1.7em x 0.6em, 0.3em stroke, 0.4em down. Width is a
+     percentage of the word rather than a flat 1.7em so it stays sensible if
+     the copy ever changes. */
+  .tagline .flourish {
+    position: absolute;
+    left: 6%;
+    width: 88%;
+    bottom: -0.40em;
+    height: 0.60em;
+    /* Round caps overhang the viewBox by half the stroke width. */
+    overflow: visible;
+    pointer-events: none;
+  }
+  .tagline .flourish path {
+    fill: none;
+    stroke: var(--kind);
+    stroke-linecap: round;
+    /* preserveAspectRatio="none" stretches the box to the width of the word,
+       which would squash the round caps into ellipses and thin the stroke.
+       non-scaling-stroke holds the weight independent of that stretch, and an
+       em width keeps it proportional to the tagline's clamped font size. */
+    vector-effect: non-scaling-stroke;
+    stroke-width: 0.3em;
+    opacity: 0.45;
+  }
+  /* The app is dark-only, so 0.45 is matched to the dark ground: over #0b1326
+     it reads as a clear marker stroke. The same value over the light ground
+     blends to a washed-out sage, so light mode gets more of it to hold equal
+     presence. Two rules rather than a selector list before an @media - see the
+     link colours above for what that mistake costs. */
+  :root[data-theme="light"] .tagline .flourish path { opacity: 0.6; }
+  @media (prefers-color-scheme: light) {
+    .tagline .flourish path { opacity: 0.6; }
+  }
+
+  .lede {
+    max-width: 46ch;
+    color: var(--text-secondary);
+    font-size: 16.5px;
+    margin: 0 0 34px;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero-links a {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .hero-links a:hover { border-color: var(--primary-soft); transform: translateY(-1px); }
+  .hero-links a.primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+  .hero-links a.primary:hover { border-color: var(--primary); }
+
+  /* ---------- Radiating rings ---------- */
+
+  .hero-rings {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .ring-stack {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    margin-right: -80px;
+    flex-shrink: 0;
+  }
+  .ring {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 50%;
+    border: 1.5px solid var(--ring-stroke);
+    opacity: 0;
+    animation: ring-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .ring-1 { width: 200px; height: 200px; animation-delay: 0.05s; }
+  .ring-2 { width: 320px; height: 320px; animation-delay: 0.16s; }
+  .ring-3 { width: 440px; height: 440px; animation-delay: 0.27s; }
+  .core {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 132px;
+    height: 132px;
+    opacity: 0;
+    animation: core-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.05s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .app-icon {
+    width: 100%;
+    height: 100%;
+    /* Real app icon, its own two radiating-arc rings painted out (this
+       hero already draws its own larger rings around it) - opaque square
+       image, so a squircle radius + box-shadow, matching how iOS actually
+       presents the icon. */
+    border-radius: 22%;
+    box-shadow: 0 0 46px color-mix(in srgb, var(--primary) 45%, transparent),
+      0 10px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  @keyframes ring-in {
+    from { opacity: 0; transform: scale(0.72); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes core-in {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ring, .core { animation: none; opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding: 72px 24px 56px; min-height: 0; }
+    .hero-rings { position: static; justify-content: center; margin-top: 12px; opacity: 0.6; }
+    .ring-stack { width: 260px; height: 260px; margin-right: 0; }
+    .ring-1 { width: 120px; height: 120px; }
+    .ring-2 { width: 190px; height: 190px; }
+    .ring-3 { width: 260px; height: 260px; }
+    .core { width: 84px; height: 84px; }
+  }
+
+  /* ---------- Shared section rhythm ---------- */
+
+  main { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+  section { padding: 64px 0; border-top: 1px solid var(--border); }
+
+  section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin: 0 0 28px;
+  }
+
+  /* ---------- Features as rule rows ---------- */
+
+  .rule-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .rule-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+  .rule-row:last-child { border-bottom: none; }
+  .rule-row:hover { background: var(--surface-raised); }
+
+  .rule-text { display: flex; flex-direction: column; gap: 4px; max-width: 44ch; }
+  .rule-name { font-size: 16px; font-weight: 600; }
+  .rule-desc { font-size: 14px; color: var(--text-secondary); }
+
+  .pill {
+    flex-shrink: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 6px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill-blue { color: var(--primary-soft); background: color-mix(in srgb, var(--primary) 22%, transparent); }
+  :root[data-theme="light"] .pill-blue { color: var(--primary); background: color-mix(in srgb, var(--primary) 14%, transparent); }
+  @media (prefers-color-scheme: light) { .pill-blue { color: var(--primary); background: color-mix(in srgb, var(--primary) 14%, transparent); } }
+  .pill-kind { color: var(--kind); background: color-mix(in srgb, var(--kind) 18%, transparent); }
+  .pill-neutral { color: var(--text-tertiary); background: color-mix(in srgb, var(--text-tertiary) 16%, transparent); }
+
+  /* ---------- Why ---------- */
+
+  .why p {
+    font-size: 16.5px;
+    color: var(--text-secondary);
+    max-width: 64ch;
+    margin: 0 0 18px;
+  }
+  .why p:last-child { margin-bottom: 0; }
+  .why strong { color: var(--text); font-weight: 600; }
+
+  /* ---------- Support / Privacy utility strip ---------- */
+
+  .utility {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 560px) {
+    .utility { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .utility-col h3 {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+  .utility-col p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* ---------- Requirements ---------- */
+
+  .requirements ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .requirements li {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    align-items: baseline;
+  }
+  .requirements li::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    margin-top: 8px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+  .requirements code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13.5px;
+    color: var(--text);
+    background: var(--surface-raised);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 32px 72px;
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    font-size: 13.5px;
+    color: var(--text-tertiary);
+    margin: 0 0 8px;
+    max-width: 64ch;
+  }
+  footer p:last-child { margin-bottom: 0; }
+
+  /* ---------- Document pages (privacy.html) ---------- */
+  /* A prose page can't reuse `section h2`, which is a 13px uppercase eyebrow -
+     correct as a label above a landing-page block, wrong as a heading inside a
+     document someone actually reads top to bottom. */
+
+  .doc-header {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 32px 0;
+  }
+  .doc-back {
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .prose { padding: 24px 32px 8px; }
+
+  .prose h1 {
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 8px 0 24px;
+  }
+  .prose h2 {
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .prose p {
+    margin: 0 0 16px;
+    max-width: 68ch;
+    color: var(--text-secondary);
+  }
+  /* The lede - date line and one-sentence scope statement - sits above the
+     first h2 and reads as metadata rather than body copy. */
+  .prose h1 + p { color: var(--text-tertiary); font-size: 14px; }
+
+  .prose ul { margin: 0 0 16px; padding: 0; list-style: none; max-width: 68ch; }
+  .prose li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+  }
+  .prose li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+  }
+  :root[data-theme="light"] .prose li::before { background: var(--primary); }
+  @media (prefers-color-scheme: light) {
+    .prose li::before { background: var(--primary); }
+  }
+
+  .prose strong { color: var(--text); font-weight: 650; }
+  .prose code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 6px;
+  }
+
+  @media (max-width: 560px) {
+    .doc-header { padding: 24px 22px 0; }
+    .prose { padding: 20px 22px 8px; }
+  }
